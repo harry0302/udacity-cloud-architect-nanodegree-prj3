@@ -1,0 +1,22 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+Provide recommendations on how to remediate the vulnerabilities
+
+AWS Security Hub:
+- [CIS.1.14] Ensure hardware MFA is enabled for the "root" account and [CIS.1.13] Ensure MFA is enabled for the "root" account
+=> Enable MFA for the "root" account.
+
+- [CIS.4.1] Ensure no security groups allow ingress from 0.0.0.0/0 to port 22 and [CIS.4.2] Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389
+=> Modify the inbound the rule for each security group to allow ingress from restricted IPs or delete the rule allowing ingress onport 22 and 3389.
+
+- [CIS.4.3] Ensure the default security group of every VPC restricts all traffic
+=> Delete all inbound and outbound rules from the default security group. Add the required rules to other security groups attached to the vpc.
+
+AWS Config:
+- Rule named [securityhub-restricted-ssh-59d2f647] 
+=> Disallow any SSH traffic by using the AWS Systems Manager > Sessions Manager
+
+- Rule named [securityhub-encrypted-volumes-68e63a43]
+=> Enable encryption for the volumes
+
+- Rule named [securityhub-s3-bucket-server-side-encryption-enabled-5eb44bc9]
+=> Enable encryption for the S3 buckets

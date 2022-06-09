@@ -1,0 +1,26 @@
+1. Identify tools that will allow you to do
+2. For each tool - identify an example compliance violation or vulnerability which it might expose.
+
+a. Scan infrastructure as code templates.
+Regula (Open Policy Agent) - https://github.com/fugue/regula
+
+Example vulnerability:
+- Network exposures: Ingress open to all IP's
+- Unauthorized privileged escalations: Policies with full access
+- Compliance violations: S3 and EBS not encrypted
+
+b. Scan AMI’s or containers for OS vulnerabilities.
+Clair (https://github.com/quay/clair) 
+
+Example vulnerability:
+- Old libraries and images can have many bugs and security vulnerabilities.
+- https://cve.mitre.org/cgi-bin/cvename.cgi?name=cve-2021-44228
+
+c. Scan an AWS environment for cloud configuration vulnerabilities.
+AWS Config: https://aws.amazon.com/config/
+
+Example vulnerability:
+- Unsecured users 
+- Not enable MFA for users
+- No policy for passwords
+- Public access for S3 Buckets

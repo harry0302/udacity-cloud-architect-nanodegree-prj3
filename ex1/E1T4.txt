@@ -1,0 +1,17 @@
+Text file identifying 2 poor security practices with justification.
+
+# Poor practice 1
+In the configuration of c3-app.yml, InstanceRole have full access to any s3 bucket instance. 
+Roles should only have access to specific buckets and allow only necessary actions.
+
+# Poor practice 2
+Both public and private subnet network ACL rules allow all traffic on all ports from all ports. 
+Network ACL rules should be used to minimize the available network connectivity to reduce the 
+traffic that can be sent to and from the subnet.
+
+# Poor practice 3
+S3 buckets, including the bucket for VPC flow logs, have no server-side encryption and 
+all the buckets have block public access disabled. The vpc-flow-logs can contain information 
+that an attacker can use to compromise the system if the rest of the infraestructure is not set up correctly.
+S3 buckets should be enable server-side encryption to prevent people who shouldn't have access to the content to
+view the content.
